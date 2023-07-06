@@ -1,0 +1,25 @@
+.navbar{
+    background-color: rgb(70, 82, 196);
+    width: 100%;
+    color: white;
+    display: flex;
+    gap: 80%;
+    list-style: none;
+    height: 10vh;
+  
+}
+.navbar a{
+    color: white;
+    display: flex;
+    list-style: none;
+    text-decoration: none;
+    margin-top: 55%;
+  
+   
+   
+}
+li a{
+    list-style: none;
+    text-decoration: none;
+
+}

@@ -1,33 +1,53 @@
-// import { useState } from 'react';
-// import { useHistory } from 'react-router-dom';
+import React,{useState} from "react";
+import './style.css'
 
-// const LoginPage = () => {
-//   const [username, setUsername] = useState('');
-//   const [password, setPassword] = useState('');
-//   const [message, setMessage] = useState('');
-//   const history = useHistory();
 
-//   const handleLogin = () => {
-//     // check login credentials with backend here, set message accordingly
-//     setMessage('Login successful!');
-//     setTimeout(() => {
-//       history.push('/');
-//     }, 2000);
-//   };
+const LoginPage=()=>{
+const [username,setUserName]=useState('');
+console.log(username);
 
-//   return (
-//     <div>
-//       <h1>Login Page</h1>
-//       <form onSubmit={handleLogin}>
-//         <label htmlFor="username">Username</label>
-//         <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
-//         <label htmlFor="password">Password</label>
-//         <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-//         <button type="submit">Login</button>
-//       </form>
-//       <p>{message}</p>
-//     </div>
-//   );
-// };
+const [password,setPassword]=useState('')
+console.log(password);
 
-// export default LoginPage;
+const handlesubmit= async(e)=>{
+    e.preventDefault();
+
+const data= {
+    username:username,
+    password:password
+}
+try {
+    const response =await fetch('https://dummyjson.com/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' 
+    },
+        body: JSON.stringify(data)
+      })
+      const result =await response.json();
+      console.log({result});
+}
+catch(error){
+    console.log(error.message);
+}
+}
+
+    return(
+        <div>
+            <form className="form" onSubmit ={handlesubmit}>
+                <h1>Login</h1>
+                <input placeholder="Enter username" type="text"
+                onChange={(e)=>{setUserName(e.target.value)}}
+                />
+                <br/>
+                <br/>
+                <input placeholder="password" type="password"
+                onChange={(e)=>{setPassword(e.target.value)}}
+                />
+                <br/>
+                <br/>
+                <button>Login</button>
+            </form>
+        </div>
+    )
+}
+export default LoginPage;

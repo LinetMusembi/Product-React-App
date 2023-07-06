@@ -1,27 +1,31 @@
 import './App.css';
-import ProductsPage from './ProductsPage';
-import navbar from './NavBar';
-import NewProductFormPageForm from './NewForm';
-import ProductDetailsPage from './ShowProduct';
-import Login from './Login';
+import Products from './Products';
+import Navbar from './Navbar';
+// import Form from './Form';
+// import ProductDetailsPage from './ShowProduct';
+import LoginPage from './LoginPage';
 import { BrowserRouter,Routes,Route } from "react-router-dom";
-import Productsinfo from './ShowProduct';
+// import Productsinfo from './ShowProduct';
+
+
 function App() {
   return (
     <div >
-     <navbar/>
-     {/* <NavBar/> */}
-     <Login/>
+     <Navbar/>
+     
+     <LoginPage/>
       <BrowserRouter>
       <Routes>
        <Route index element={<Products/>}/>
        <Route path='/home' element={<Products/>}/>
-       <Route path='/information/:productId' element={<Productsinfo/>}/>
-       <Route path='/form' element={<Form/>}/>
-       <Route path='/login' element={<Login/>}/>
+       {/* <Route path='/information/:productId' element={<Productsinfo/>}/> */}
+       {/* <Route path='/form' element={<Form/>}/>
+       <Route path='/login' element={<Login/>}/> */}
+
         </Routes>
-        </BrowserRouter>
+        </BrowserRouter> 
     </div>
-  );
+  ); 
 }
+
 export default App;
