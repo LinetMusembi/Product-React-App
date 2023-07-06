@@ -1,13 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
-
+import ProductsPage from './ProductsPage';
+import navbar from './NavBar';
+import NewProductFormPageForm from './NewForm';
+import ProductDetailsPage from './ShowProduct';
+import Login from './Login';
+import { BrowserRouter,Routes,Route } from "react-router-dom";
+import Productsinfo from './ShowProduct';
 function App() {
   return (
-    <div>
-      <ProductsPage/>
-    
+    <div >
+     <navbar/>
+     {/* <NavBar/> */}
+     <Login/>
+      <BrowserRouter>
+      <Routes>
+       <Route index element={<Products/>}/>
+       <Route path='/home' element={<Products/>}/>
+       <Route path='/information/:productId' element={<Productsinfo/>}/>
+       <Route path='/form' element={<Form/>}/>
+       <Route path='/login' element={<Login/>}/>
+        </Routes>
+        </BrowserRouter>
     </div>
   );
 }
-
 export default App;

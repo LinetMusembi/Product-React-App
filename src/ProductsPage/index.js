@@ -1,32 +1,50 @@
-import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
-function ProductsPage() {
+const ProductsPage = () => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    fetch('/api/products')
-      .then(response => response.json())
-      .then(data => setProducts(data))
-      .catch(error => console.log(error));
+    (async () =>{
+
+    })
   }, []);
 
+  const handleAddProduct = async () => {
+    try{
+      setLoading(true);
+      const response = await fetch('https://dummyjson.com/products');
+      const result = await response.json();
+      setProducts(result.products); 
+      setLoading(false);
+    }
+    catch(error){
+      console.log(error.message);
+    }
+
+  };
+console.log({products}); 
+if (loading) {
+  return <h1>Loading...</h1>
+}
+
   return (
+    
     <div>
-      <h1>Products</h1>
-      <Link to="/add-product">Add new product</Link>
-      <ul>
-        {products.map(product => (
-          <li key={product.id}>
-            <Link to={`/product/${product.id}`}>
-              <h2>{product.name}</h2>
-              <img src={product.image} alt={product.name} />
-              <p>Price: {product.price} USD</p>
-              <p>Discount: {product.discountPercentage}%</p>
-            </Link>
-          </li>
-        ))}
-      </ul>
+   
+      <h1>Products Page</h1>
+      {products.map((product) => (
+        <div key={product.id}>
+          <Link to={`/products/${product.id}`}>
+            <img src={product.image} alt={product.name} />
+            <p>{product.name}</p> 
+            <p>{product.price}</p> 
+            <p>{product.discountPercentage}</p> 
+          </Link>
+        </div>
+      ))}
+      <button onClick={handleAddProduct}>Add Product</button>
     </div>
   );
 }
