@@ -1,8 +1,8 @@
 import React,{useState} from "react";
-import './style.css'
+import './index.css'
+import {link} from "react-router-dom"
 
-
-const LoginPage=()=>{
+const Login=()=>{
 const [username,setUserName]=useState('');
 console.log(username);
 
@@ -50,4 +50,4 @@ catch(error){
         </div>
     )
 }
-export default LoginPage;
+export default Login;
